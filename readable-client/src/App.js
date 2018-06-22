@@ -7,11 +7,11 @@ import createHistory from "history/createBrowserHistory"
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './reducers';
-
 let store = createStore(
   rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+
 let history = createHistory();
 class App extends Component {
   render() {

@@ -1,0 +1,26 @@
+{
+  "name": "readable-readtnd-project2",
+  "version": "1.0.0",
+  "description": "Submitted for the udacity react developer nanodegree",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nohup ./node_modules/.bin/forever index.js &",
+    "stop": "nohup ./node_modules/.bin/forever stop index.js &",
+    "postinstall": "npm install ./api-server && npm install ./readable-client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phlickey/readable-readtnd-project2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phlickey/readable-readtnd-project2/issues"
+  },
+  "homepage": "https://github.com/phlickey/readable-readtnd-project2#readme",
+  "dependencies": {
+    "forever": "^0.15.3",
+    "static-server": "^2.2.1"
+  }
+}
