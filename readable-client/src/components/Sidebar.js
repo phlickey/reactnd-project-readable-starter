@@ -8,7 +8,7 @@ class Sidebar extends Component {
             <ul className="Sidebar">
                 <SidebarItem title='Home' path='/' />
                 <SidebarItem title="Categories" />
-                {categories.map(category=><SidebarItem title={category.name} path={'/'+category.path} />)}
+                {categories.map((category, idx)=><SidebarItem key={idx} title={category.name} path={'/'+category.path} />)}
             </ul>
         );
     }
