@@ -1,25 +1,33 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BackButton from './BackButton';
+import PostSummary from './PostSummary';
+import Comment from './Comment';
 class Post extends Component {
     render(){
         let {category, postId} = this.props.match.params;
+        let comments = [];
+        for (let comment in this.props.comments){
+            if (this.props.comments[comment].parentId === postId){
+                comments.push(this.props.comments[comment]);
+            }
+        }
         let post = this.props.posts[postId];
         let {title, body, author, timestamp, commentCount, voteScore} = post;
         return (
             <div className="post">
-                <Link to={`/${category}/${postId}`}> <h1>{ title }</h1> </Link>
                 <BackButton />
-                <p>{ body }</p>
-                <p>Score: {voteScore} </p>
-                <p>{ commentCount } { (commentCount > 1) ? 'comments' : 'comment'} </p>
-                <sub>Posted by: { author } at { new Date(timestamp).toString() }</sub>
-                <button>Edit</button>
-                <button>Delete</button>
-                <div>
-
+                <PostSummary post={post} />
+                <div className="post__content">
+                    <p>{body}</p>
                 </div>
+                <ul className="post__comments">
+                    {comments.length?
+                    comments.map((comment)=>{
+                        return ( <Comment comment={comment} />)
+                    }):`No one's posted any comments yet!`
+                }
+                </ul>
             </div>
         )
     }

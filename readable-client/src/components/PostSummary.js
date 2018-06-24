@@ -9,21 +9,31 @@ class PostSummary extends Component {
 
     }
 
+    upVote(){
+
+    }
+
+    downVote(){
+
+    }
     render(){
-        let {title, body, author, timestamp, commentCount, voteScore, category, id} = this.props.post;
+        let {title, author, timestamp, commentCount, voteScore, category, id} = this.props.post;
         return (
-            <li>
-                <Link to={`/${category}/${id}`}> <h1>{ title }</h1> </Link>
-                <p>{ body }</p>
+            <div className="post-summary">
+                <Link to={`/${category}/${id}`}> 
+                    <h1>{ title }</h1> 
+                </Link>
                 <p>Score: {voteScore} </p>
                 {commentCount?(
                     <p>{ commentCount } { (commentCount > 1) ? 'comments' : 'comment'} </p>
-                ):'No Comments to show '}
+                ):'No Comments'}
                 <br />
                 <sub>Posted by: { author } at { new Date(timestamp).toString() }</sub>
                 <button onClick={()=>{this.editPost(id)}}>Edit</button>
                 <button onClick={()=>{this.deletePost(id)}}>Delete</button>
-            </li>
+                <button onClick={()=>{this.upVote(id)}}>Up Vote</button>
+                <button onClick={()=>{this.downVote(id)}}>Down Vote</button>
+            </div>
         )
     }
 }
