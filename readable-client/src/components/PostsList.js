@@ -13,7 +13,6 @@ class PostsList extends Component {
         if (typeof(category)!=='undefined'){
             postList = postList.filter(post=>post.category===category);
         }
-        console.log(postList);
         return (
             <div>
                 {(postList.length>0)?
