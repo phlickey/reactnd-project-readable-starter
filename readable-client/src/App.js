@@ -3,7 +3,6 @@ import Sidebar from './components/Sidebar';
 import PostsList from './components/PostsList';
 import Post from './components/Post'
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import createHistory from "history/createBrowserHistory"
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './reducers';
@@ -12,12 +11,11 @@ let store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-let history = createHistory();
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router history={history}>
+        <Router>
             <div>
               <Sidebar />
               <Route exact path="/" component={PostsList} />
