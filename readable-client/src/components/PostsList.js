@@ -16,7 +16,10 @@ class PostsList extends Component {
         console.log(postList);
         return (
             <div>
-                {postList.map(post=>(<PostSummary post={post}/>))}
+                {(postList.length>0)?
+                postList.map(post=>(<PostSummary post={post}/>)):
+                `No posts in category: ${category}`
+            }
             </div>
         );
     }
