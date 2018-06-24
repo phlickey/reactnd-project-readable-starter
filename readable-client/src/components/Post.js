@@ -14,7 +14,7 @@ class Post extends Component {
                 <p>{ body }</p>
                 <p>Score: {voteScore} </p>
                 <p>{ commentCount } { (commentCount > 1) ? 'comments' : 'comment'} </p>
-                <sub>Posted by: { author } at { timestamp }</sub>
+                <sub>Posted by: { author } at { new Date(timestamp).toString() }</sub>
                 <button>Edit</button>
                 <button>Delete</button>
                 <div>
