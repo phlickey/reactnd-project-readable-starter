@@ -16,7 +16,7 @@ class PostsList extends Component {
         return (
             <div>
                 {(postList.length>0)?
-                postList.map(post=>(<PostSummary post={post}/>)):
+                postList.map((post, idx)=>(<PostSummary post={post} key={idx}/>)):
                 `No posts in category: ${category}`
             }
             </div>
