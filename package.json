@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nohup ./node_modules/.bin/forever index.js &",
-    "stop": "nohup ./node_modules/.bin/forever stop index.js &",
+    "stop": "./node_modules/.bin/forever stop index.js",
     "postinstall": "npm install ./api-server && npm install ./readable-client"
   },
   "repository": {
