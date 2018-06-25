@@ -1,0 +1,8 @@
+div.readable{
+    display: flex;
+}
+
+.readable .sidebar{
+    width: 10%;
+    padding: 15px;
+}
