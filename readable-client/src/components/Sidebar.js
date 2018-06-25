@@ -5,7 +5,7 @@ class Sidebar extends Component {
     render(){
         let { categories } = this.props;
         return(
-            <ul className="Sidebar">
+            <ul className="sidebar">
                 <SidebarItem title='Home' path='/' />
                 <SidebarItem title="Categories" />
                 {categories.map((category, idx)=><SidebarItem key={idx} title={category.name} path={'/'+category.path} />)}

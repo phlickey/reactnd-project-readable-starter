@@ -3,19 +3,34 @@ import { connect } from 'react-redux';
 import BackButton from './BackButton';
 import PostSummary from './PostSummary';
 import Comment from './Comment';
+import {getPostById, getCommentsByPost} from '../utils';
+import {getSinglePostAction} from '../actions/getSinglePost';
+import {getCommentsAction} from '../actions/getComments';
 class Post extends Component {
+    componentDidMount(){
+        let {postId} = this.props.match.params;
+        getPostById(postId)
+            .then(post=>{
+                this.props.getSinglePost(post)
+            });
+        getCommentsByPost(postId)
+            .then(comments=>{
+                this.props.getComments(comments);
+            })
+    }
     render(){
-        let {category, postId} = this.props.match.params;
+        let {postId} = this.postId || this.props.match.params;
         let comments = [];
         for (let comment in this.props.comments){
             if (this.props.comments[comment].parentId === postId){
                 comments.push(this.props.comments[comment]);
             }
         }
-        let post = this.props.posts[postId];
-        let {title, body, author, timestamp, commentCount, voteScore} = post;
+        let post = this.props.posts.filter(post=>post.id === postId)[0];
+        let {body} = post || {body:''};
         return (
-            <div className="post">
+            post?(
+                <div className="post">
                 <BackButton />
                 <PostSummary post={post} />
                 <div className="post__content">
@@ -23,12 +38,15 @@ class Post extends Component {
                 </div>
                 <ul className="post__comments">
                     {comments.length?
-                    comments.map((comment)=>{
-                        return ( <Comment comment={comment} />)
+                    comments.sort((a,b)=>b.voteScore - a.voteScore)
+                    .map((comment, idx)=>{
+                        return ( <Comment key={idx} comment={comment} />)
                     }):`No one's posted any comments yet!`
                 }
                 </ul>
-            </div>
+                </div>
+            ):'no post'
+            
         )
     }
 }
@@ -37,4 +55,10 @@ let mapStateToProps = (state, props) => ({
     posts: state.posts,
     comments: state.comments
 });
-export default connect(mapStateToProps)(Post);
+let mapDispatchToProps = (dispatch) => {
+    return {
+        getSinglePost: (post) => dispatch(getSinglePostAction(post)),
+        getComments: (comments) => dispatch(getCommentsAction(comments))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

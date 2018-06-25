@@ -6,11 +6,11 @@ class SidebarItem extends Component {
         let {title, path} = this.props;
         return (((typeof(path)!=='undefined')?
                 (<Link to={ path }>
-                    <li className='Sidebar__SidebarItem'>
+                    <li className='sidebar__sidebarItem'>
                         { title }
                     </li>
                 </Link>):
-                (<li className='Sidebar__SidebarItem'>
+                (<li className='sidebar__sidebarItem'>
                 { title }
                 </li>)
         ))
