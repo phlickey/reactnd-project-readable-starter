@@ -3,20 +3,13 @@ import { connect } from 'react-redux';
 import BackButton from './BackButton';
 import PostSummary from './PostSummary';
 import Comment from './Comment';
-import {getPostById, getCommentsByPost} from '../utils';
 import {getSinglePostAction} from '../actions/getSinglePost';
 import {getCommentsAction} from '../actions/getComments';
 class Post extends Component {
     componentDidMount(){
         let {postId} = this.props.match.params;
-        getPostById(postId)
-            .then(post=>{
-                this.props.getSinglePost(post)
-            });
-        getCommentsByPost(postId)
-            .then(comments=>{
-                this.props.getComments(comments);
-            })
+        this.props.getSinglePost(postId);
+        this.props.getComments(postId);
     }
     render(){
         let {postId} = this.postId || this.props.match.params;

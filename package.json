@@ -21,6 +21,7 @@
   "homepage": "https://github.com/phlickey/readable-readtnd-project2#readme",
   "dependencies": {
     "forever": "^0.15.3",
+    "redux-thunk": "^2.3.0",
     "static-server": "^2.2.1"
   }
 }

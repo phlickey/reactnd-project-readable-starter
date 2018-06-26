@@ -11,7 +11,7 @@ async function getCategories(){
     return data;
 }
 
-async function getPostsBycategory(category){
+async function getPostsByCategory(category){
     let serverResponse = await fetch(API_SCHEME+API_DOMAIN+`/${category}/posts`, {headers: authHeader});
     let data = await serverResponse.json();
     return data;
@@ -148,7 +148,7 @@ async function deleteComment(id){
 
 export {
     getCategories, 
-    getPostsBycategory,
+    getPostsByCategory,
     getPosts, 
     submitPost,
     getPostById,

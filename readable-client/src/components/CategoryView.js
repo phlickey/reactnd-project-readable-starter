@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {getPosts, getPostsBycategory}  from '../utils';
-import {getPostsAction} from '../actions/getPosts';
+import {getPostsAction, getPostsByCategoryAction} from '../actions/getPosts';
 import {getCategoriesAction} from '../actions/getCategories';
 import PostList from './PostList';
 import BackButton from './BackButton';
@@ -18,14 +17,9 @@ class CategoryView extends Component {
             category
         });
         if (category){
-            getPostsBycategory(category)
-                .then(posts=>{
-                    this.props.getPosts(posts);
-                })
+            this.props.getPostsByCategory(category)
         }else{
-            getPosts().then(posts=>{
-                this.props.getPosts(posts);
-            });
+            this.props.getPosts()
         }
     }
     componentWillReceiveProps(newProps){
@@ -34,14 +28,9 @@ class CategoryView extends Component {
             this.setState({
                 category
             });
-            getPostsBycategory(category)
-            .then(posts=>{
-                this.props.getPosts(posts);
-            });
+            this.props.getPostsByCategory(category)
         }else{
-            getPosts().then(posts=>{
-                this.props.getPosts(posts);
-            });
+            this.props.getPosts()
         }
         
     }
@@ -62,7 +51,8 @@ let mapStateToProps = (state, props) => {
 function mapDispatchToProps(dispatch) {
     return {
       getPosts: (data) => dispatch(getPostsAction(data)),
-      getCategories: (data) => dispatch(getCategoriesAction(data))
+      getCategories: (data) => dispatch(getCategoriesAction(data)),
+      getPostsByCategory: (category)=> dispatch(getPostsByCategoryAction(category))
     }
   }
 export default connect(null, mapDispatchToProps)(CategoryView);
