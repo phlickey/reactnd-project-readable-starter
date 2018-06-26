@@ -1,8 +1,38 @@
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Raleway Light'), local('Raleway-Light'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptrg8zYS_SKggPNwIYqWqZPANqczVs.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 div.readable{
     display: flex;
+    font-family: 'Raleway', sans-serif;
 }
 
 .readable .sidebar{
     width: 10%;
     padding: 15px;
+}
+
+.readable a{
+    text-decoration: none;
+}
+.readable ul li{
+    list-style: none;
+}
+
+button{
+    display: block;
+    border-radius: 0px;
+    border: 1px solid #333;
+    padding: 1%;
+    background-color: #333;
+    color: #fff;
+    transition: color ease 0.2s, background-color ease 0.35s;
+    will-change: color, background-color;
+}
+button:hover{
+    color:#333;
+    background-color: #fff;
 }
