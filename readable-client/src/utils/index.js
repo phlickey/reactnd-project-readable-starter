@@ -23,7 +23,7 @@ async function getPosts(){
     return data;
 }
 
-async function submitPost({id, timestamp, title, body, author, category}){
+async function addPost({id, timestamp, title, body, author, category}){
     let reqBody =  JSON.stringify({id, timestamp, title, body, author, category});
     let serverResponse = await fetch(API_SCHEME+API_DOMAIN+`/posts`, {
         method: "POST", 
@@ -150,7 +150,7 @@ export {
     getCategories, 
     getPostsByCategory,
     getPosts, 
-    submitPost,
+    addPost,
     getPostById,
     voteOnPost,
     deletePost, 
