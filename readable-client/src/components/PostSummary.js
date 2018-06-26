@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { deletePostCreator } from '../actions/deletePost';
 class PostSummary extends Component {
-    deletePost(){
-
-    }
-
     editPost(){
 
     }
@@ -17,7 +15,8 @@ class PostSummary extends Component {
 
     }
     render(){
-        let {title, author, timestamp, commentCount, voteScore, category, id} = this.props.post;
+        let {deletePost, post} = this.props;
+        let {title, author, timestamp, commentCount, voteScore, category, id} = post;
         return (
             <div className="post-summary">
                 <Link to={`/${category}/${id}`}> 
@@ -30,12 +29,14 @@ class PostSummary extends Component {
                 <br />
                 <sub>Posted by: { author } at { new Date(timestamp).toString() }</sub>
                 <button onClick={()=>{this.editPost(id)}}>Edit</button>
-                <button onClick={()=>{this.deletePost(id)}}>Delete</button>
+                <button onClick={()=>{deletePost(id)}}>Delete</button>
                 <button onClick={()=>{this.upVote(id)}}>Up Vote</button>
                 <button onClick={()=>{this.downVote(id)}}>Down Vote</button>
             </div>
         )
     }
 }
-
-export default PostSummary;
+const mapDispatchToProps = (dispatch)=>({
+    deletePost: (postId) => dispatch(deletePostCreator(postId)) 
+});
+export default connect(null, mapDispatchToProps)(PostSummary);

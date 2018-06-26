@@ -11,7 +11,8 @@ export default function postsReducer(state = [], action){
         case EDIT_POST:
             return state;
         case DELETE_POST:
-            return state;
+            let posts = [...state];
+            return posts.filter(post=>post.id !== action.payload.id);
         case GET_POSTS:
             return [...action.payload];
         case GET_SINGLE_POST:
