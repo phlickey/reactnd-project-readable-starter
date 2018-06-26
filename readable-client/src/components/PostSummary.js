@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deletePostCreator } from '../actions/deletePost';
 import { votePostCreator } from '../actions/votePost';
+import DateMeta from './DateMeta';
 class PostSummary extends Component {
     editPost(){
 
@@ -28,7 +29,7 @@ class PostSummary extends Component {
                     <p>{ commentCount } { (commentCount > 1) ? 'comments' : 'comment'} </p>
                 ):'No Comments'}
                 <br />
-                <sub>Posted by: { author } at { new Date(timestamp).toString() }</sub>
+                <DateMeta timestamp={timestamp} author={author}/>
                 <button onClick={()=>{this.editPost(id)}}>Edit</button>
                 <button onClick={()=>{deletePost(id)}}>Delete</button>
                 <button onClick={()=>{this.upVote(id)}}>Up Vote</button>
