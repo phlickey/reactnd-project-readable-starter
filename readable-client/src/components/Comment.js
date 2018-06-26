@@ -1,26 +1,30 @@
 import React, {Component} from 'react';
-
+import { connect } from 'react-redux';
+import {voteCommentCreator} from '../actions/voteComment';
 class Comment extends Component{
-    upVote(){
-
+    upVote(id){
+        this.props.vote({id, vote:'upVote'});
     }
 
-    downVote(){
-
+    downVote(id){
+        this.props.vote({id, vote:'downVote'});
     }
 
     render(){
-        let comment = this.props.comment;
+        let {body, author, timestamp, voteScore, id}= this.props.comment;
+
         return(
             <li>
-                <p>{comment.body}</p>
-                <sub> Posted by {comment.author} at {new Date(comment.timestamp).toString()} </sub>
-                <p> Score : {comment.voteScore} </p>
-                <button onClick={()=>this.upVote()}> Upvote </button>
-                <button onClick={()=>this.downVote()}> DownVote </button>
+                <p>{body}</p>
+                <sub> Posted by {author} at {new Date(timestamp).toString()} </sub>
+                <p> Score : {voteScore} </p>
+                <button onClick={()=>this.upVote(id)}> Upvote </button>
+                <button onClick={()=>this.downVote(id)}> DownVote </button>
             </li>
         )
     }
 }
-
-export default Comment;
+let mapDispatchToProps = (dispatch)=>({
+    vote: ({id, vote}) => dispatch(voteCommentCreator({id, vote}))
+})
+export default connect(null, mapDispatchToProps)(Comment);
