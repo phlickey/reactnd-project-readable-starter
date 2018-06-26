@@ -4,6 +4,7 @@ import {getPostsAction, getPostsByCategoryAction} from '../actions/getPosts';
 import {getCategoriesAction} from '../actions/getCategories';
 import PostList from './PostList';
 import BackButton from './BackButton';
+import Modal from 'react-modal';
 class CategoryView extends Component {
     constructor(){
         super();
@@ -36,10 +37,18 @@ class CategoryView extends Component {
     }
     render(){
         let {category} = this.state;
+        let {newPostModalOpen, setNewPostModal} = this.props;
         return (
             <div className="post-list">
                 {category&&(<BackButton />)}
                 <PostList category={category}/>
+                <button onClick={()=>{setNewPostModal('open')}}> New Post </button>
+                <Modal
+                    isOpen={newPostModalOpen}
+                    contentLabel="New Post Modal"
+                > <button onClick={()=>{setNewPostModal('closed')}}> close </button>
+                </Modal>
+
             </div>
         );
     }
