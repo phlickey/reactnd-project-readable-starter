@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {getPostsAction, getPostsByCategoryAction} from '../actions/getPosts';
 import {getCategoriesAction} from '../actions/getCategories';
+import {setNewPostModalCreator} from '../actions/setNewPostModal';
+import uuid from 'uuid/v4';
+import { addPostCreator } from '../actions/addPost';
 import PostList from './PostList';
 import BackButton from './BackButton';
 import Modal from 'react-modal';
@@ -15,7 +18,7 @@ class CategoryView extends Component {
     componentDidMount(){
         let { category } = this.props.match.params;
         this.setState({
-            category
+            category,
         });
         if (category){
             this.props.getPostsByCategory(category)
@@ -24,8 +27,8 @@ class CategoryView extends Component {
         }
     }
     componentWillReceiveProps(newProps){
-        let {category} = newProps.match.params;
-        if (category){
+        let { category } = newProps.match.params;
+        if (category && (this.state.category !== category)){
             this.setState({
                 category
             });
@@ -33,8 +36,16 @@ class CategoryView extends Component {
         }else{
             this.props.getPosts()
         }
-        
     }
+
+    addNewPost({title, body, author, category}){
+        let {setNewPostModal, addPost} = this.props;
+        let id = uuid();
+        let timestamp = (new Date()).getTime();
+        addPost({id, timestamp, title, body, author, category});
+        setNewPostModal('closed');
+    }
+
     render(){
         let {category} = this.state;
         let {newPostModalOpen, setNewPostModal} = this.props;
@@ -47,6 +58,12 @@ class CategoryView extends Component {
                     isOpen={newPostModalOpen}
                     contentLabel="New Post Modal"
                 > <button onClick={()=>{setNewPostModal('closed')}}> close </button>
+                <button onClick={()=>{this.addNewPost({
+                    title: 'Test Post',
+                    body: 'This is the body',
+                    author: 'sys',
+                    category: 'udacity'
+                })}}>Add a testpost </button>
                 </Modal>
 
             </div>
@@ -54,14 +71,16 @@ class CategoryView extends Component {
     }
 }
 let mapStateToProps = (state, props) => {
-    return {posts: state.posts};
+    return {newPostModalOpen: state.uiState.newPostModalOpen};
 };
 
 function mapDispatchToProps(dispatch) {
     return {
       getPosts: (data) => dispatch(getPostsAction(data)),
       getCategories: (data) => dispatch(getCategoriesAction(data)),
-      getPostsByCategory: (category)=> dispatch(getPostsByCategoryAction(category))
+      getPostsByCategory: (category)=> dispatch(getPostsByCategoryAction(category)),
+      setNewPostModal: (state) => dispatch(setNewPostModalCreator(state)),
+      addPost: (post) => dispatch(addPostCreator(post))
     }
   }
-export default connect(null, mapDispatchToProps)(CategoryView);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryView);
