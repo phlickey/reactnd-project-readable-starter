@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deletePostCreator } from '../actions/deletePost';
+import { votePostCreator } from '../actions/votePost';
 class PostSummary extends Component {
     editPost(){
 
     }
 
-    upVote(){
-
+    upVote(id){
+        this.props.vote({id, vote:'upVote'});
     }
 
-    downVote(){
-
+    downVote(id){
+        this.props.vote({id, vote:'downVote'});
     }
     render(){
         let {deletePost, post} = this.props;
@@ -37,6 +38,7 @@ class PostSummary extends Component {
     }
 }
 const mapDispatchToProps = (dispatch)=>({
-    deletePost: (postId) => dispatch(deletePostCreator(postId)) 
+    deletePost: (postId) => dispatch(deletePostCreator(postId)),
+    vote: ({id, vote}) => dispatch(votePostCreator({id, vote}))
 });
 export default connect(null, mapDispatchToProps)(PostSummary);
