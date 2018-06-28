@@ -1,4 +1,5 @@
-import {getCommentsByPost} from '../utils'
+import {getCommentsByPost} from '../utils';
+
 const GET_COMMENTS = 'GET_COMMENTS';
 const getCommentsAction = (postId)=>{
     return (dispatch)=>{
@@ -10,4 +11,5 @@ const getCommentsAction = (postId)=>{
         })
     }
 };
+
 export  {getCommentsAction, GET_COMMENTS};

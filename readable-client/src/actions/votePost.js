@@ -1,4 +1,5 @@
 import {voteOnPost} from '../utils';
+
 const VOTE_POST = 'VOTE_POST';
 const votePostCreator = ({id, vote})=>{
     return (dispatch)=>{
@@ -10,5 +11,5 @@ const votePostCreator = ({id, vote})=>{
         })
     }
 }
-export {votePostCreator, VOTE_POST};
 
+export {votePostCreator, VOTE_POST};

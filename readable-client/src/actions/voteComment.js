@@ -1,4 +1,5 @@
 import {voteOnComment} from '../utils';
+
 const VOTE_COMMENT = 'VOTE_COMMENT';
 const voteCommentCreator = ({id, vote}) =>{
     return (dispatch) => {

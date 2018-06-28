@@ -1,4 +1,5 @@
 import {getPostById} from '../utils';
+
 const GET_SINGLE_POST = 'GET_SINGLE_POST';
 const getSinglePostAction = (id)=>{
     return (dispatch, getState)=>{
@@ -12,4 +13,5 @@ const getSinglePostAction = (id)=>{
         })
     }
 };
+
 export {getSinglePostAction, GET_SINGLE_POST};
