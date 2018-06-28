@@ -1,17 +1,17 @@
 import {ADD_POST} from '../actions/addPost';
 import {EDIT_POST} from '../actions/editPost';
 import {DELETE_POST} from '../actions/deletePost';
-import {GET_ALL_POSTS, GET_POSTS_BY_CATEGORY} from '../actions/getPosts';
+import {GET_ALL_POSTS} from '../actions/getPosts';
 import {GET_SINGLE_POST} from '../actions/getSinglePost';
 import {VOTE_POST}  from '../actions/votePost';
-
+import {GET_POSTS_BY_CATEGORY} from '../actions/getPostsByCategory';
 export default function postsReducer(state = [], action){
     let posts = [...state];
     switch(action.type){
         case ADD_POST:
             return posts.concat(action.payload)
         case EDIT_POST:
-            return state;
+            return posts.filter(post=>post.id!==action.payload.id).concat(action.payload);
         case DELETE_POST:
             return posts.filter(post=>post.id !== action.payload.id);
         case GET_ALL_POSTS:
@@ -23,7 +23,7 @@ export default function postsReducer(state = [], action){
         case VOTE_POST:
             return posts.filter(post=>post.id!==action.payload.id).concat(action.payload);
         default:
-            return state;
+            return posts;
     }
 }
 

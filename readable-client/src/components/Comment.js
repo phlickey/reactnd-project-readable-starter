@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+
 import {voteCommentCreator} from '../actions/voteComment';
+
 import DateMeta from './DateMeta';
+
 class Comment extends Component{
     upVote(id){
         this.props.vote({id, vote:'upVote'});
@@ -28,4 +31,5 @@ class Comment extends Component{
 let mapDispatchToProps = (dispatch)=>({
     vote: ({id, vote}) => dispatch(voteCommentCreator({id, vote}))
 })
+
 export default connect(null, mapDispatchToProps)(Comment);

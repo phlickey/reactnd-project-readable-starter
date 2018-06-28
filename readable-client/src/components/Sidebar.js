@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import SidebarItem from './SidebarItem';
 import { connect } from 'react-redux';
+
+import SidebarItem from './SidebarItem';
+
 class Sidebar extends Component {
     render(){
         let { categories } = this.props;
@@ -17,4 +19,5 @@ class Sidebar extends Component {
 let mapStateToProps = (state, props)=>({
     categories: state.categories
 });
+
 export default connect(mapStateToProps)(Sidebar);

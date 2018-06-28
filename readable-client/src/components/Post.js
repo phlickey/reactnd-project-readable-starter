@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+import {getSinglePostAction} from '../actions/getSinglePost';
+import {getCommentsAction} from '../actions/getComments';
+
 import BackButton from './BackButton';
 import PostSummary from './PostSummary';
 import Comment from './Comment';
-import {getSinglePostAction} from '../actions/getSinglePost';
-import {getCommentsAction} from '../actions/getComments';
+
 class Post extends Component {
     componentDidMount(){
         let {postId} = this.props.match.params;
         this.props.getSinglePost(postId);
         this.props.getComments(postId);
     }
+
     render(){
         let {postId} = this.postId || this.props.match.params;
         let comments = [];
@@ -38,8 +42,7 @@ class Post extends Component {
                 }
                 </ul>
                 </div>
-            ):'no post'
-            
+            ):'Post not found'
         )
     }
 }
@@ -54,4 +57,5 @@ let mapDispatchToProps = (dispatch) => {
         getComments: (comments) => dispatch(getCommentsAction(comments))
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import { deletePostCreator } from '../actions/deletePost';
 import { votePostCreator } from '../actions/votePost';
-import DateMeta from './DateMeta';
-class PostSummary extends Component {
-    editPost(){
+import { setEditPostModalCreator } from '../actions/setEditPostModal';
 
+import DateMeta from './DateMeta';
+
+class PostSummary extends Component {
+    editPost(id){
+        this.props.setEditPostModal({open: true, id});
     }
 
     upVote(id){
@@ -38,8 +42,11 @@ class PostSummary extends Component {
         )
     }
 }
+
 const mapDispatchToProps = (dispatch)=>({
     deletePost: (postId) => dispatch(deletePostCreator(postId)),
-    vote: ({id, vote}) => dispatch(votePostCreator({id, vote}))
+    vote: ({id, vote}) => dispatch(votePostCreator({id, vote})),
+    setEditPostModal: ({open, id})=>dispatch(setEditPostModalCreator({open, id}))
 });
+
 export default connect(null, mapDispatchToProps)(PostSummary);
