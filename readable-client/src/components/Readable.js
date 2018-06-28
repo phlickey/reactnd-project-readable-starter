@@ -12,9 +12,14 @@ import NewPostForm from './NewPostForm';
 import EditPostForm from './EditPostForm';
 
 class Readable extends Component{
+    componentWillMount(){
+        Modal.setAppElement('#root');
+    }
+
     componentDidMount(){
         this.props.getCategoriesDispatch();
     }
+    
     render(){
         let {newPostModalOpen, editPostModalOpen} = this.props;
         return (

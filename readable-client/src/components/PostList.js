@@ -15,10 +15,6 @@ import PostListsSort from './PostListsSort';
 import PostListHeader from './PostListHeader';
 
 class CategoryView extends Component {
-    componentWillMount(){
-        Modal.setAppElement('#root');
-    }
-
     componentDidMount(){
         let { category } = this.props.match.params;
         let {getPosts, getPostsByCategory} = this.props;

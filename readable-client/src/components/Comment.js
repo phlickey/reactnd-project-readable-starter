@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
 import {voteCommentCreator} from '../actions/voteComment';
+import {deleteCommentCreator} from '../actions/deleteComment';
+import {setEditCommentModalCreator} from '../actions/setEditCommentModal';
 
 import DateMeta from './DateMeta';
 
@@ -15,7 +17,8 @@ class Comment extends Component{
     }
 
     render(){
-        let {body, author, timestamp, voteScore, id}= this.props.comment;
+        let {comment, deleteComment, setEditCommentModalState} = this.props;
+        let {body, author, timestamp, voteScore, id}= comment;
 
         return(
             <li>
@@ -24,12 +27,18 @@ class Comment extends Component{
                 <p> Score : {voteScore} </p>
                 <button onClick={()=>this.upVote(id)}> Upvote </button>
                 <button onClick={()=>this.downVote(id)}> DownVote </button>
+                <button onClick={()=>{
+                    setEditCommentModalState({open: true, id});
+                }}> Edit </button>
+                <button onClick={()=>{deleteComment(id);}}> Delete </button>
             </li>
         )
     }
 }
 let mapDispatchToProps = (dispatch)=>({
-    vote: ({id, vote}) => dispatch(voteCommentCreator({id, vote}))
+    vote: ({id, vote}) => dispatch(voteCommentCreator({id, vote})),
+    deleteComment: (id) => dispatch(deleteCommentCreator(id)),
+    setEditCommentModalState: ({open, id}) => dispatch(setEditCommentModalCreator({open, id})),
 })
 
 export default connect(null, mapDispatchToProps)(Comment);

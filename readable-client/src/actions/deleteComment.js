@@ -1,4 +1,15 @@
-const DELETE_COMMENT = 'DELETE_COMMENT';
-const deleteCommentCreator = (payload) => ({ type: DELETE_COMMENT, payload });
+import {deleteComment} from '../utils'
 
-export {deleteCommentCreator, DELETE_COMMENT};
+const DELETE_COMMENT = 'DELETE_COMMENT';
+const deleteCommentCreator = (id) => { 
+    return (dispatch) => {
+        deleteComment(id).then(comment=>{
+            dispatch({
+                type: DELETE_COMMENT,
+                payload: comment
+            })
+        })
+    }
+};
+
+export {deleteCommentCreator, DELETE_COMMENT}

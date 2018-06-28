@@ -15,7 +15,9 @@ class PostListHeader extends Component{
         )
     }
 }
+
 let mapStateToProps = (state)=>({
     currentlyVisibleCategory: state.uiState.currentlyVisibleCategory
 });
+
 export default connect(mapStateToProps)(PostListHeader);
