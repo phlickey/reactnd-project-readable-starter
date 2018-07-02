@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nohup ./node_modules/.bin/forever index.js &",
-    "stop": "./node_modules/.bin/forever stop index.js",
+    "start": "node index.js",
     "postinstall": "npm install ./api-server && npm install ./readable-client"
   },
   "repository": {
@@ -20,6 +19,7 @@
   },
   "homepage": "https://github.com/phlickey/readable-readtnd-project2#readme",
   "dependencies": {
+    "express": "^4.16.3",
     "forever": "^0.15.3",
     "react-modal": "^3.4.5",
     "redux-thunk": "^2.3.0",
