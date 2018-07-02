@@ -25,12 +25,12 @@ class Comment extends Component{
                 <p>{body}</p>
                 <DateMeta timestamp={timestamp} author={author} />
                 <p> Score : {voteScore} </p>
-                <button onClick={()=>this.upVote(id)}> Upvote </button>
-                <button onClick={()=>this.downVote(id)}> DownVote </button>
                 <button onClick={()=>{
                     setEditCommentModalState({open: true, id});
                 }}> Edit </button>
                 <button onClick={()=>{deleteComment(id);}}> Delete </button>
+                <button onClick={()=>this.upVote(id)}> Upvote </button>
+                <button onClick={()=>this.downVote(id)}> DownVote </button>
             </li>
         )
     }

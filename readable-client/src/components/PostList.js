@@ -44,7 +44,7 @@ class CategoryView extends Component {
                 <PostListHeader />
                 <PostListsSort />   
                 <PostSummaryList/>
-                <button onClick={()=>{setNewPostModal({open: true})}}> New Post </button>
+                <button className="new-post-button" onClick={()=>{setNewPostModal({open: true})}}> New Post </button>
             </div>
         );
     }

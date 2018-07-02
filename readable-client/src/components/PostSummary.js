@@ -34,6 +34,7 @@ class PostSummary extends Component {
                 ):'No Comments'}
                 <br />
                 <DateMeta timestamp={timestamp} author={author}/>
+                <br />
                 <button onClick={()=>{this.editPost(id)}}>Edit</button>
                 <button onClick={()=>{deletePost(id)}}>Delete</button>
                 <button onClick={()=>{this.upVote(id)}}>Up Vote</button>

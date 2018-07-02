@@ -2,7 +2,7 @@ import React from 'react';
 
 function BackButton(){
     return (
-        <button onClick={()=>{window.history.back();}}>Back</button>
+        <button className='back-button' onClick={()=>{window.history.back();}}>Back</button>
     )
 }
 
