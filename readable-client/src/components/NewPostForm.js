@@ -17,11 +17,13 @@ class NewPostForm extends Component{
     }
 
     addNewPost({title, body, author, category}){
-        let {setNewPostModal, addPost} = this.props;
-        let id = uuid();
-        let timestamp = (new Date()).getTime();
-        addPost({id, timestamp, title, body, author, category});
-        setNewPostModal('closed');
+        if (title.length && body.length && author.length && typeof(category)!== 'undefined'){
+            let {setNewPostModal, addPost} = this.props;
+            let id = uuid();
+            let timestamp = (new Date()).getTime();
+            addPost({id, timestamp, title, body, author, category});
+            setNewPostModal('closed');
+        }
     }
 
     render(){
