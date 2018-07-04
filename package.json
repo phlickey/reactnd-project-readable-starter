@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
+    "start": "cd ./readable-client && node ./node_modules/react-scripts/bin/react-scripts.js build && node ../index.js",
     "postinstall": "npm install ./api-server && npm install ./readable-client"
   },
   "repository": {
